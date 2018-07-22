@@ -1,5 +1,3 @@
-
-
 $OUTPUT_FOLDER = "royaltextile"
 $FEED_URL = "https://www.royaltextile.nl/en/feed/assortmentfeeddownload.aspx?language=nl"
 
@@ -44,6 +42,8 @@ class CreateFeed
         empty_hash_values(row)
       end
 
+      price = row[:adviesprijs].gsub(",", ".").to_f + 10.00 if row[:adviesprijs]
+      row[:adviesprijs] = price if price
     end
     puts "#{rows_parsed} rows processed".green
   end
